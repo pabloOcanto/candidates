@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.5.1
+- https://www.phpmyadmin.net
+-
+- Servidor: 127.0.0.1
+- Tiempo de generación: 04-11-2019 a las 09:25:44
+- Versión del servidor: 10.1.9-MariaDB
+- Versión de PHP: 5.6.15
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="candidatodb" collation="utf8_spanish_ci" charset="utf8">
+            <pma:table name="candidato">
+                CREATE TABLE `candidato` (
+                  `CANDIDATO_ID` int(11) NOT NULL AUTO_INCREMENT,
+                  `NOMBRE_APELLIDO` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+                  `DNI` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+                  `FECHA_NACIMIENTO` date NOT NULL,
+                  `DOMICILIO` varchar(35) COLLATE utf8_spanish_ci NOT NULL,
+                  `TELEFONO` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+                  `EMAIL` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+                  PRIMARY KEY (`CANDIDATO_ID`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de datos: 'candidatodb'
+    -->
+    <database name="candidatodb">
+        <!-- Tabla candidato -->
+        <table name="candidato">
+            <column name="CANDIDATO_ID">1</column>
+            <column name="NOMBRE_APELLIDO">pablo ocanto</column>
+            <column name="DNI">34404216</column>
+            <column name="FECHA_NACIMIENTO">1989-01-11</column>
+            <column name="DOMICILIO">4 789, 2do B</column>
+            <column name="TELEFONO">+54 (011) 3631-2110</column>
+            <column name="EMAIL">pomlianni.mail@gmail.com</column>
+        </table>
+        <table name="candidato">
+            <column name="CANDIDATO_ID">2</column>
+            <column name="NOMBRE_APELLIDO">juan perez</column>
+            <column name="DNI">21.897.216</column>
+            <column name="FECHA_NACIMIENTO">2000-06-15</column>
+            <column name="DOMICILIO">7 878</column>
+            <column name="TELEFONO">54 (221) 781-2064</column>
+            <column name="EMAIL">juan.perez@fluxit.com</column>
+        </table>
+    </database>
+</pma_xml_export>
