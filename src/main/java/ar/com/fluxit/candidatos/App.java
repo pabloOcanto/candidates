@@ -1,5 +1,7 @@
 package ar.com.fluxit.candidatos;
 
+import ar.com.fluxit.candidatos.entity.Role;
+import ar.com.fluxit.candidatos.entity.UserEntity;
 import ar.com.fluxit.candidatos.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -9,10 +11,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Pablo on 2/11/2019.
@@ -31,6 +36,7 @@ public class App implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
 
+        /*Para fines de testeo*/
         Long time = new Date().getTime() * 1000;
 
         String token = Jwts.builder().setClaims(new HashMap<>())
@@ -38,7 +44,7 @@ public class App implements CommandLineRunner {
                 .setExpiration(new Timestamp(time)).signWith(SignatureAlgorithm.HS512, "javainuse").compact();
         System.out.println(token);
 
-        /*
+
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername("pablo.ocanto");
@@ -46,12 +52,11 @@ public class App implements CommandLineRunner {
 
         Role role = new Role();
         role.setName("USER");
-        Set roles = new HashSet<Role>();
-        roles.add(role);
+        Set roles = new HashSet();
         userEntity.setRoles(roles);
 
         userRepository.save(userEntity);
-        */
+
 
 
     }

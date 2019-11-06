@@ -14,22 +14,53 @@
     <!--
     - Structure schemas
     -->
-    <pma:structure_schemas>
-        <pma:database name="candidatodb" collation="utf8_spanish_ci" charset="utf8">
-            <pma:table name="candidato">
-                CREATE TABLE `candidato` (
-                  `CANDIDATO_ID` int(11) NOT NULL AUTO_INCREMENT,
-                  `NOMBRE_APELLIDO` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-                  `DNI` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-                  `FECHA_NACIMIENTO` date NOT NULL,
-                  `DOMICILIO` varchar(35) COLLATE utf8_spanish_ci NOT NULL,
-                  `TELEFONO` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-                  `EMAIL` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-                  PRIMARY KEY (`CANDIDATO_ID`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-            </pma:table>
-        </pma:database>
-    </pma:structure_schemas>
+<pma:structure_schemas>
+    <pma:database name="candidatodb" collation="utf8_spanish_ci" charset="utf8">
+        <pma:table name="candidato">
+            CREATE TABLE `candidato` (
+            `candidato_id` int(11) NOT NULL AUTO_INCREMENT,
+            `dni` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+            `domicilio` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+            `email` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+            `fecha_nacimiento` datetime NOT NULL,
+            `nombre_apellido` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+            `telefono` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+            PRIMARY KEY (`candidato_id`)
+            ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+        </pma:table>
+        <pma:table name="rol">
+            CREATE TABLE `rol` (
+            `rol_id` int(11) NOT NULL AUTO_INCREMENT,
+            `rol` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+            PRIMARY KEY (`rol_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+        </pma:table>
+        <pma:table name="usuario">
+            CREATE TABLE `usuario` (
+            `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
+            `password` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+            `username` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+            PRIMARY KEY (`usuario_id`)
+            ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+        </pma:table>
+        <pma:table name="usuario_rol">
+            CREATE TABLE `usuario_rol` (
+            `usuario_id` int(11) NOT NULL,
+            `rol_id` int(11) NOT NULL,
+            PRIMARY KEY (`usuario_id`,`rol_id`),
+            KEY `FK610kvhkwcqk2pxeewur4l7bd1` (`rol_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+        </pma:table>
+        <pma:table name="usuario_roles">
+            CREATE TABLE `usuario_roles` (
+            `user_entity_usuario_id` int(11) NOT NULL,
+            `roles_rol_id` int(11) NOT NULL,
+            PRIMARY KEY (`user_entity_usuario_id`,`roles_rol_id`),
+            UNIQUE KEY `UK_76ys4m1i3lxkcqjkcbb6xvcod` (`roles_rol_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+        </pma:table>
+    </pma:database>
+</pma:structure_schemas>
 
     <!--
     - Base de datos: 'candidatodb'
@@ -53,6 +84,20 @@
             <column name="DOMICILIO">7 878</column>
             <column name="TELEFONO">54 (221) 781-2064</column>
             <column name="EMAIL">juan.perez@fluxit.com</column>
+        </table>
+
+        <!-- Tabla rol -->
+        <!-- Tabla usuario -->
+        <table name="usuario">
+            <column name="usuario_id">1</column>
+            <column name="password">$2a$10$nsQ6S8iuUhl.yJ7VFlWMqu5YIrfc02X/8TDXzpSh1TbEPcAIiXL7O</column>
+            <column name="username">pablo.ocanto</column>
+        </table>
+        <!-- Tabla usuario_rol -->
+        <!-- Tabla usuario_roles -->
+        <table name="usuario_roles">
+            <column name="user_entity_usuario_id">1</column>
+            <column name="roles_rol_id">1</column>
         </table>
     </database>
 </pma_xml_export>

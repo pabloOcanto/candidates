@@ -1,6 +1,7 @@
 package ar.com.fluxit.candidatos.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Pablo on 5/11/2019.
@@ -14,9 +15,8 @@ public class Role {
     private int id;
     @Column(name = "ROL")
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "USUARIO")
-    private UserEntity userEntity;
+    @ManyToMany(mappedBy = "roles")
+    private List<UserEntity> userEntity;
 
     public Role() {
     }
@@ -37,11 +37,11 @@ public class Role {
         this.name = name;
     }
 
-    public UserEntity getUserEntity() {
+    public List<UserEntity> getUserEntity() {
         return userEntity;
     }
 
-    public void setUserEntity(UserEntity userEntity) {
+    public void setUserEntity(List<UserEntity> userEntity) {
         this.userEntity = userEntity;
     }
 }
